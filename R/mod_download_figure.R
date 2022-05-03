@@ -20,12 +20,20 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 #' download_figure Server Functions
 #'
 #' @noRd 
-mod_download_figure_server <- function(id, filename, figure, width = 8, height = 6) {
+mod_download_figure_server <- function(
+    id, 
+    filename, 
+    figure, 
+    width = 8, 
+    height = 6, 
+    ggplot = TRUE
+) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
     min_size <- 2 # min for width or height
     max_size <- 30 # max for width or height
+    
     #Check width
     figure_width <- reactive({
       if (is.numeric(input$width)) {
@@ -48,7 +56,7 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
       }
     })
     
-    # Generate a popup UI when clicked. You can do this in server function?
+   
     observeEvent(
       input$download_popup,
       {
@@ -68,8 +76,10 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
               min = min_size,
               max = max_size
             ),
-            h5("The plot will be rendered differently depending on size. When the dimensions are too small, 
-            error or blank plot will be generated."),
+            h5("The plot will be rendered differently depending on size. 
+            When the dimensions are too small, error or blank plot
+               will be generated."
+            ),
             downloadButton(             #buttons
               outputId = ns("dl_pdf"),
               label = "PDF"
@@ -82,7 +92,7 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
               outputId = ns("dl_svg"),
               label = "SVG"
             ),
-            size = "s" # small dialog modal
+            size = "s" 
           )
         )
       }
@@ -92,8 +102,8 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
     output$dl_pdf <- downloadHandler(
       filename = paste0(filename, ".pdf"),
       content = function(file) {
-        # remove popup when downloaded
-        #on.exit(removeModal())
+        
+        on.exit(removeModal())
         pdf(
           file,
           width = figure_width(),
@@ -108,8 +118,8 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
     output$dl_png <- downloadHandler(
       filename = paste0(filename, ".png"),
       content = function(file) {
-        # remove popup when downloaded
-        #on.exit(removeModal())
+        
+        on.exit(removeModal())
         png(
           file,
           res = 360,
@@ -126,8 +136,8 @@ mod_download_figure_server <- function(id, filename, figure, width = 8, height =
     output$dl_svg <- downloadHandler(
       filename = paste0(filename, ".svg"),
       content = function(file) {
-        # remove popup when downloaded
-        #on.exit(removeModal())
+        
+        on.exit(removeModal())
         svg(
           file,
           width = figure_width(),

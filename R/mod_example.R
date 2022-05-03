@@ -10,7 +10,9 @@
 mod_example_ui <- function(id){
   ns <- shiny::NS(id)
   sidebarLayout(
+    
     sidebarPanel(
+      
       radioButtons(
         inputId = ns("plot_type"), 
         label = "Choose plot type", 
@@ -20,6 +22,7 @@ mod_example_ui <- function(id){
         ), 
         selected = 1
       ),
+      
       conditionalPanel(
         condition = "input.plot_type == 1", 
         selectInput(
@@ -38,6 +41,7 @@ mod_example_ui <- function(id){
         ), 
         ns = ns
       ), 
+      
       conditionalPanel(
         condition = "input.plot_type ==2", 
         selectInput(
@@ -57,7 +61,9 @@ mod_example_ui <- function(id){
         ns = ns
       )
     ), 
+    
     mainPanel(
+      
       conditionalPanel(
         condition = "input.plot_type == 1",
         fluidRow(
@@ -72,6 +78,7 @@ mod_example_ui <- function(id){
         ),
         ns = ns 
       ),
+      
       conditionalPanel(
         condition = "input.plot_type == 2", 
         fluidRow(
@@ -86,6 +93,7 @@ mod_example_ui <- function(id){
         ), 
         ns = ns
       )
+      
     )
   )
 }
@@ -145,7 +153,7 @@ mod_example_server <- function(id){
         hist_r()
       })
       
-      #--- scatterplots --- 
+      #--- scatterplots -----
       scatter_gg <- reactive({
         req(input$scatter_var1, input$scatter_var2)
         ggplot2::ggplot(
