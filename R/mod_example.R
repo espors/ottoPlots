@@ -51,7 +51,8 @@ mod_example_ui <- function(id){
       )
     ), 
     mainPanel(
-      
+      plotOutput(ns("hist_gg")), 
+      plotOutput(ns("hist_r"))
     )
   )
 }
@@ -82,6 +83,28 @@ mod_example_server <- function(id){
         choices = colnames(iris)[1:4], 
         selected = colnames(iris)[2]
       )
+    })
+    
+    hist_gg <- reactive({
+      ggplot2::ggplot(
+        data = iris, 
+        ggplot2::aes_string(x = input$hist_variable)
+      ) + 
+        ggplot2::geom_histogram()
+    })
+    
+    output$hist_gg <- renderPlot({
+      print(hist_gg())
+    })
+    
+    hist_r <- reactive({
+      hist(
+        iris[, input$hist_variable]
+      )
+    })
+    
+    output$hist_r <- renderPlot({
+      (hist_r())
     })
     
  
