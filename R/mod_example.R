@@ -69,11 +69,19 @@ mod_example_ui <- function(id){
         fluidRow(
           column(
             width = 6, 
-            plotOutput(ns("hist_gg"))
+            plotOutput(ns("hist_gg")), 
+            mod_download_figure_ui(
+              ns("dl_hist_gg"), 
+              label = "Download ggplot"
+            )
           ), 
           column(
             width = 6, 
-            plotOutput(ns("hist_r")), 
+            plotOutput(ns("hist_r")),
+            mod_download_figure_ui(
+              ns("dl_hist_r"), 
+              label = "Download base R plot"
+            )
           )
         ),
         ns = ns 
@@ -84,11 +92,19 @@ mod_example_ui <- function(id){
         fluidRow(
           column(
             width = 6, 
-            plotOutput(ns("scatter_gg"))
+            plotOutput(ns("scatter_gg")), 
+            mod_download_figure_ui(
+              ns("dl_scatter_gg"), 
+              label = "Download ggplot"
+            )
           ), 
           column(
             width = 6, 
-            plotOutput(ns("scatter_r"))
+            plotOutput(ns("scatter_r")), 
+            mod_download_figure_ui(
+              ns("dl_scatter_r"), 
+              label = "Download base R plot"
+            )
           )
         ), 
         ns = ns
@@ -134,13 +150,19 @@ mod_example_server <- function(id){
           ggplot2::aes_string(x = input$hist_variable)
         ) + 
           ggplot2::geom_histogram(bins = input$num_bins) + 
-          ggplot2::labs(title = "ggPlot histogram")
+          ggplot2::labs(title = "ggplot_histogram")
       })
       output$hist_gg <- renderPlot({
         print(hist_gg())
       })
+      dl_hist_gg <- mod_download_figure_server(
+        "dl_hist_gg", 
+        filename = "histogram_ggplot", 
+        figure = reactive({ hist_gg() }), 
+        ggplot = TRUE
+      )
       
-      hist_r <- reactive({
+      hist_r <- function()({
         req(input$hist_variable)
         hist(
           iris[, c(input$hist_variable)], 
@@ -148,10 +170,17 @@ mod_example_server <- function(id){
           main = "Base R histogram", 
           nclass = input$num_bins
         )
+        
       })
       output$hist_r <- renderPlot({
         hist_r()
       })
+      dl_hist_r <- mod_download_figure_server(
+        "dl_hist_r", 
+        filename = "histogram_r", 
+        figure = reactive({hist_r()}), 
+        ggplot = FALSE 
+      )
       
       #--- scatterplots -----
       scatter_gg <- reactive({
@@ -169,8 +198,14 @@ mod_example_server <- function(id){
       output$scatter_gg <- renderPlot({
         print(scatter_gg())
       })
+      dl_scatter_gg <- mod_download_figure_server(
+        "dl_scatter_gg", 
+        filename = "scatter_ggplot", 
+        figure = reactive({ scatter_gg() }), 
+        ggplot = TRUE
+      )
       
-      scatter_rr <- reactive({
+      scatter_r <- function()({
         req(input$scatter_var1, input$scatter_var2)
         plot(
           x = iris[ ,c(input$scatter_var1)],
@@ -180,8 +215,14 @@ mod_example_server <- function(id){
         )
       })
       output$scatter_r <- renderPlot({
-        scatter_rr()
+        scatter_r()
       })
+      dl_scatter_r <- mod_download_figure_server(
+        "dl_scatter_r", 
+        filename = "scatter_rplot", 
+        figure = reactive({scatter_r() }), 
+        ggplot = FALSE
+      )
       
     })
   })

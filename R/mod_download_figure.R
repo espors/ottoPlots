@@ -31,6 +31,7 @@ mod_download_figure_server <- function(
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
+    
     min_size <- 2 # min for width or height
     max_size <- 30 # max for width or height
     
@@ -109,7 +110,11 @@ mod_download_figure_server <- function(
           width = figure_width(),
           height = figure_height()
         )
-        print(figure())
+        if (ggplot == TRUE){
+          print(figure())
+        } else {
+          figure()
+        }
         dev.off()
       }
     )
@@ -127,7 +132,11 @@ mod_download_figure_server <- function(
           height = figure_height(),
           units = "in"
         )
-        print(figure())
+        if (ggplot == TRUE){
+          print(figure())
+        } else {
+          figure()
+        }
         dev.off()
       }
     )
@@ -143,7 +152,11 @@ mod_download_figure_server <- function(
           width = figure_width(),
           height = figure_height()
         )
-        print(figure())
+        if (ggplot == TRUE){
+          print(figure())
+        } else {
+          figure()
+        }
         dev.off()
       }
     )
