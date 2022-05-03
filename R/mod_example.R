@@ -29,6 +29,13 @@ mod_example_ui <- function(id){
           selected = NULL, 
           multiple = FALSE
         ), 
+        sliderInput(
+          inputId = ns("num_bins"), 
+          label = "Select number of bins", 
+          min = 10, 
+          max = 100,
+          value = 30
+        ), 
         ns = ns
       ), 
       conditionalPanel(
@@ -51,8 +58,34 @@ mod_example_ui <- function(id){
       )
     ), 
     mainPanel(
-      plotOutput(ns("hist_gg")), 
-      plotOutput(ns("hist_r"))
+      conditionalPanel(
+        condition = "input.plot_type == 1",
+        fluidRow(
+          column(
+            width = 6, 
+            plotOutput(ns("hist_gg"))
+          ), 
+          column(
+            width = 6, 
+            plotOutput(ns("hist_r")), 
+          )
+        ),
+        ns = ns 
+      ),
+      conditionalPanel(
+        condition = "input.plot_type == 2", 
+        fluidRow(
+          column(
+            width = 6, 
+            plotOutput(ns("scatter_gg"))
+          ), 
+          column(
+            width = 6, 
+            plotOutput(ns("scatter_r"))
+          )
+        ), 
+        ns = ns
+      )
     )
   )
 }
@@ -64,6 +97,7 @@ mod_example_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     
+    #--- update select input --- 
     observe({
       updateSelectInput(
         session = session, 
@@ -83,31 +117,65 @@ mod_example_server <- function(id){
         choices = colnames(iris)[1:4], 
         selected = colnames(iris)[2]
       )
+      
+      #--- histograms ---- 
+      hist_gg <- reactive({
+        req(input$hist_variable) 
+        ggplot2::ggplot(
+          data = iris, 
+          ggplot2::aes_string(x = input$hist_variable)
+        ) + 
+          ggplot2::geom_histogram(bins = input$num_bins) + 
+          ggplot2::labs(title = "ggPlot histogram")
+      })
+      output$hist_gg <- renderPlot({
+        print(hist_gg())
+      })
+      
+      hist_r <- reactive({
+        req(input$hist_variable)
+        hist(
+          iris[, c(input$hist_variable)], 
+          xlab = input$hist_variable, 
+          main = "Base R histogram", 
+          nclass = input$num_bins
+        )
+      })
+      output$hist_r <- renderPlot({
+        hist_r()
+      })
+      
+      #--- scatterplots --- 
+      scatter_gg <- reactive({
+        req(input$scatter_var1, input$scatter_var2)
+        ggplot2::ggplot(
+          data = iris, 
+          ggplot2::aes_string(
+            x = input$scatter_var1, 
+            y = input$scatter_var2
+          )
+        ) + 
+          ggplot2::geom_point() + 
+          ggplot2::labs(title = "ggPlot scatterplot")
+      })
+      output$scatter_gg <- renderPlot({
+        print(scatter_gg())
+      })
+      
+      scatter_rr <- reactive({
+        req(input$scatter_var1, input$scatter_var2)
+        plot(
+          x = iris[ ,c(input$scatter_var1)],
+          y = iris[ ,c(input$scatter_var2)], 
+          xlab = input$scatter_var1, 
+          ylab = input$scatter_var2
+        )
+      })
+      output$scatter_r <- renderPlot({
+        scatter_rr()
+      })
+      
     })
-    
-    hist_gg <- reactive({
-      ggplot2::ggplot(
-        data = iris, 
-        ggplot2::aes_string(x = input$hist_variable)
-      ) + 
-        ggplot2::geom_histogram()
-    })
-    
-    output$hist_gg <- renderPlot({
-      print(hist_gg())
-    })
-    
-    hist_r <- reactive({
-      hist(
-        iris[, input$hist_variable]
-      )
-    })
-    
-    output$hist_r <- renderPlot({
-      (hist_r())
-    })
-    
- 
   })
 }
     
