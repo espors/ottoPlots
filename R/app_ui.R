@@ -10,7 +10,8 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic 
     fluidPage(
-      h1("ottoPlots")
+      h1("ottoPlots"), 
+      mod_example_ui("example_ui_1")
     )
   )
 }
