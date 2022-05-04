@@ -170,7 +170,6 @@ mod_example_server <- function(id){
           main = "Base R histogram", 
           nclass = input$num_bins
         )
-        
       })
       output$hist_r <- renderPlot({
         hist_r()
@@ -211,7 +210,8 @@ mod_example_server <- function(id){
           x = iris[ ,c(input$scatter_var1)],
           y = iris[ ,c(input$scatter_var2)], 
           xlab = input$scatter_var1, 
-          ylab = input$scatter_var2
+          ylab = input$scatter_var2, 
+          main = "Base R scatterplot"
         )
       })
       output$scatter_r <- renderPlot({
@@ -220,7 +220,7 @@ mod_example_server <- function(id){
       dl_scatter_r <- mod_download_figure_server(
         "dl_scatter_r", 
         filename = "scatter_rplot", 
-        figure = reactive({scatter_r() }), 
+        figure = reactive({ scatter_r() }), 
         ggplot = FALSE
       )
       
