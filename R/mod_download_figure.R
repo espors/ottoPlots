@@ -1,11 +1,18 @@
 #' download_figure UI Function
 #'
-#' @description A shiny Module.
+#' @description The UI function of the {shiny} module that works with 
+#' mod_download_figure_server() to automatically download figures from within a 
+#' {shiny} application. The UI function provides a "Download" button that 
+#' results in a pop-up where users can enter plot height and width and options 
+#' to download a plot as PDF, PNG, or SVG. This work for both {ggplot2} graphics 
+#' and base R plots. 
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
+#' @param label Label for download button. Default is "Download Plot". 
+#' @return UI elements for download button. 
 #'
-#' @noRd 
 #'
+#' 
 #' @importFrom shiny NS tagList 
 mod_download_figure_ui <- function(id, label = "Download Plot"){
   ns <- NS(id)
@@ -18,8 +25,25 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 }
     
 #' download_figure Server Functions
+#' 
+#' @description The server function of the {shiny} module that works with 
+#' mod_download_figure_ui() to automatically download figures from within a 
+#' {shiny} application. The server function handles the UI for the pop-up and 
+#' code for downloading the plot as PDF, PNG, or SVG.  This works for both 
+#' ggplot2 graphics and base R plots. 
 #'
-#' @noRd 
+#' @param id,input,output,session Internal parameters for {shiny}.
+#' @param filename The name of file that plot should be saved as 
+#' @param figure The plot to be downloaded. Should be wrapped in a reactive 
+#' function 
+#' @param width Width (inches) the plot should be saved as. 
+#' Default is 8 in and must be a value between 2 and 30. 
+#' @param height Height (inches) the plot should be saved as. 
+#' Default is 6 in and must be a value between 2 and 30. 
+#' @param ggplot TRUE/FALSE flag to designate if plot being save is a ggplot2 
+#' (T) plot or base R plot (F).
+#' 
+#' 
 mod_download_figure_server <- function(
     id, 
     filename, 

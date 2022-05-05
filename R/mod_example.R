@@ -1,6 +1,7 @@
 #' example UI Function
 #'
-#' @description A shiny Module.
+#' @description A small {shiny} app that demonstrates the code and usage for the 
+#' functions in ottoPlots. 
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
@@ -162,7 +163,7 @@ mod_example_server <- function(id){
         ggplot = TRUE
       )
       
-      hist_r <- function()({
+      hist_r <- reactive({
         req(input$hist_variable)
         hist(
           iris[, c(input$hist_variable)], 
@@ -170,15 +171,16 @@ mod_example_server <- function(id){
           main = "Base R histogram", 
           nclass = input$num_bins
         )
+        p <- recordPlot()
+        return(p)
       })
       output$hist_r <- renderPlot({
-        hist_r()
+        print(hist_r())
       })
       dl_hist_r <- mod_download_figure_server(
         "dl_hist_r", 
         filename = "histogram_r", 
-        figure = reactive({hist_r()}), 
-        ggplot = FALSE 
+        figure = reactive({hist_r()})
       )
       
       #--- scatterplots -----
@@ -204,7 +206,7 @@ mod_example_server <- function(id){
         ggplot = TRUE
       )
       
-      scatter_r <- function()({
+      scatter_r <- reactive({
         req(input$scatter_var1, input$scatter_var2)
         plot(
           x = iris[ ,c(input$scatter_var1)],
@@ -213,15 +215,16 @@ mod_example_server <- function(id){
           ylab = input$scatter_var2, 
           main = "Base R scatterplot"
         )
+        p <- recordPlot()
+        return(p)
       })
       output$scatter_r <- renderPlot({
-        scatter_r()
+        print(scatter_r())
       })
       dl_scatter_r <- mod_download_figure_server(
         "dl_scatter_r", 
         filename = "scatter_rplot", 
-        figure = reactive({ scatter_r() }), 
-        ggplot = FALSE
+        figure = reactive({ scatter_r() })
       )
       
     })
