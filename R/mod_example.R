@@ -159,8 +159,7 @@ mod_example_server <- function(id){
       dl_hist_gg <- mod_download_figure_server(
         "dl_hist_gg", 
         filename = "histogram_ggplot", 
-        figure = reactive({ hist_gg() }), 
-        ggplot = TRUE
+        figure = reactive({ hist_gg() })
       )
       
       hist_r <- reactive({
@@ -202,8 +201,7 @@ mod_example_server <- function(id){
       dl_scatter_gg <- mod_download_figure_server(
         "dl_scatter_gg", 
         filename = "scatter_ggplot", 
-        figure = reactive({ scatter_gg() }), 
-        ggplot = TRUE
+        figure = reactive({ scatter_gg() })
       )
       
       scatter_r <- reactive({

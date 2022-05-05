@@ -4,14 +4,7 @@
 \alias{mod_download_figure_server}
 \title{download_figure Server Functions}
 \usage{
-mod_download_figure_server(
-  id,
-  filename,
-  figure,
-  width = 8,
-  height = 6,
-  ggplot = TRUE
-)
+mod_download_figure_server(id, filename, figure, width = 8, height = 6)
 }
 \arguments{
 \item{id, input, output, session}{Internal parameters for {shiny}.}
@@ -26,9 +19,6 @@ Default is 8 in and must be a value between 2 and 30.}
 
 \item{height}{Height (inches) the plot should be saved as. 
 Default is 6 in and must be a value between 2 and 30.}
-
-\item{ggplot}{TRUE/FALSE flag to designate if plot being save is a ggplot2 
-(T) plot or base R plot (F).}
 }
 \description{
 The server function of the {shiny} module that works with 

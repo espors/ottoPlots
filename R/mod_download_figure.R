@@ -40,8 +40,7 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 #' Default is 8 in and must be a value between 2 and 30. 
 #' @param height Height (inches) the plot should be saved as. 
 #' Default is 6 in and must be a value between 2 and 30. 
-#' @param ggplot TRUE/FALSE flag to designate if plot being save is a ggplot2 
-#' (T) plot or base R plot (F).
+#'
 #' 
 #' 
 mod_download_figure_server <- function(
@@ -49,8 +48,7 @@ mod_download_figure_server <- function(
     filename, 
     figure, 
     width = 8, 
-    height = 6, 
-    ggplot = TRUE
+    height = 6
 ) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -134,11 +132,7 @@ mod_download_figure_server <- function(
           width = figure_width(),
           height = figure_height()
         )
-        if (ggplot == TRUE){
-          print(figure())
-        } else {
-          figure()
-        }
+        print(figure())
         dev.off()
       }
     )
@@ -156,11 +150,7 @@ mod_download_figure_server <- function(
           height = figure_height(),
           units = "in"
         )
-        if (ggplot == TRUE){
-          print(figure())
-        } else {
-          figure()
-        }
+        print(figure())
         dev.off()
       }
     )
@@ -176,11 +166,7 @@ mod_download_figure_server <- function(
           width = figure_width(),
           height = figure_height()
         )
-        if (ggplot == TRUE){
-          print(figure())
-        } else {
-          figure()
-        }
+        print(figure())
         dev.off()
       }
     )
