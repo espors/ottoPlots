@@ -150,7 +150,7 @@ mod_example_server <- function(id){
           data = iris, 
           ggplot2::aes_string(x = input$hist_variable)
         ) + 
-          ggplot2::geom_histogram(bins = input$num_bins) + 
+          ggplot2::geom_histogram(bins = input$num_bins + 1) + 
           ggplot2::labs(title = "ggplot_histogram")
       })
       output$hist_gg <- renderPlot({
@@ -168,7 +168,7 @@ mod_example_server <- function(id){
           iris[, c(input$hist_variable)], 
           xlab = input$hist_variable, 
           main = "Base R histogram", 
-          nclass = input$num_bins
+          breaks = input$num_bins
         )
         p <- recordPlot()
         return(p)

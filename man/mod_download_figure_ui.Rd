@@ -20,5 +20,5 @@ mod_download_figure_server() to automatically download figures from within a
 {shiny} application. The UI function provides a "Download" button that 
 results in a pop-up where users can enter plot height and width and options 
 to download a plot as PDF, PNG, or SVG. This work for both {ggplot2} graphics 
-and base R plots.
+and base R plots. Base R plots must be saved in an object with recordPlot.
 }

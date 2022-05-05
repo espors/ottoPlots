@@ -5,7 +5,7 @@
 #' {shiny} application. The UI function provides a "Download" button that 
 #' results in a pop-up where users can enter plot height and width and options 
 #' to download a plot as PDF, PNG, or SVG. This work for both {ggplot2} graphics 
-#' and base R plots. 
+#' and base R plots. Base R plots must be saved in an object with recordPlot. 
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #' @param label Label for download button. Default is "Download Plot". 
@@ -30,7 +30,8 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 #' mod_download_figure_ui() to automatically download figures from within a 
 #' {shiny} application. The server function handles the UI for the pop-up and 
 #' code for downloading the plot as PDF, PNG, or SVG.  This works for both 
-#' ggplot2 graphics and base R plots. 
+#' ggplot2 graphics and base R plots. Base R plots must be save in an object 
+#' with recordPlot. 
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #' @param filename The name of file that plot should be saved as 
