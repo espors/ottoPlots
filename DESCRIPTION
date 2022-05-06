@@ -1,6 +1,6 @@
 Package: ottoPlots
 Title: ottoPlots
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Authors@R: person('', 'Ge Labs', email = 'emma.spors@jacks.sdstate.edu', role = c('cre', 'aut'))
 Description: Assortment of shiny modules to help automate 
   figures in shiny applications.
