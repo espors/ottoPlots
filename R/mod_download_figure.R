@@ -11,7 +11,7 @@
 #' @param label Label for download button. Default is "Download Plot". 
 #' @return UI elements for download button. 
 #'
-#'
+#' @export
 #' 
 #' @importFrom shiny NS tagList 
 mod_download_figure_ui <- function(id, label = "Download Plot"){
@@ -42,7 +42,7 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 #' @param height Height (inches) the plot should be saved as. 
 #' Default is 6 in and must be a value between 2 and 30. 
 #'
-#' 
+#' @export
 #' 
 mod_download_figure_server <- function(
     id, 
