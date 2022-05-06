@@ -1,8 +1,9 @@
 Package: ottoPlots
-Title: PKG_TITLE
+Title: ottoPlots
 Version: 0.0.0.9000
-Authors@R: person('AUTHOR_FIRST', 'AUTHOR_LAST', email = 'AUTHOR@MAIL.COM', role = c('cre', 'aut'))
-Description: PKG_DESC.
+Authors@R: person('', 'Ge Labs', email = 'emma.spors@jacks.sdstate.edu', role = c('cre', 'aut'))
+Description: Assortment of shiny modules to help automate 
+  figures in shiny applications.
 License: MIT + file LICENSE
 Imports: 
     attempt,
@@ -25,3 +26,5 @@ Config/testthat/edition: 3
 Language: en-US
 Depends: 
     R (>= 2.10)
+URL: https://github.com/espors/ottoPlots
+BugReports: https://github.com/espors/ottoPlots/issues
