@@ -32,3 +32,5 @@ To see a working example of a shiny application with these modules
 library(ottoPlots)
 #ottoPlots::run_app()
 ```
+
+This package was created under Ge Labs as part of a research grant. Please see https://github.com/espors/idepGolem for our other work. 
