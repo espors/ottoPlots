@@ -33,4 +33,4 @@ library(ottoPlots)
 #ottoPlots::run_app()
 ```
 
-This package was created under Ge Labs as part of a research grant. Please see [espors/idepGolem]{https://github.com/espors/idepGolem} for our other work. 
+This package was created under Ge Labs as part of a research grant. Please see https://github.com/espors/idepGolem for our other work. 
