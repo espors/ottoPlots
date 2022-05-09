@@ -85,6 +85,7 @@ mod_example_ui <- function(id){
             )
           )
         ),
+        shiny::verbatimTextOutput(ns("image_dimensions")),
         ns = ns 
       ),
       
@@ -121,6 +122,19 @@ mod_example_ui <- function(id){
 mod_example_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    
+    #--- Try dynamicall change aspect ratio
+    # Store client info in a convenience variable
+    cdata <- session$clientData
+    
+    #get pca image dimensions
+    output$image_dimensions <- renderText({
+      paste("Plot size (pixels): ",
+            cdata[['output_hist_gg_width']],
+            " x ",
+            cdata[['output_hist_gg_height']],
+            "\nAspect Ratio: ", cdata[['output_hist_gg_width']] / cdata[['output_hist_gg_height']])
+    })
     
     #--- update select input --- 
     observe({
