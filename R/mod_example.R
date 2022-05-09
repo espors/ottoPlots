@@ -126,7 +126,7 @@ mod_example_server <- function(id){
     #--- Try dynamicall change aspect ratio
     # Store client info in a convenience variable
     cdata <- session$clientData
-    
+    write(cdata, "data.txt")
     #get pca image dimensions
     output$image_dimensions <- renderText({
       paste("Plot size (pixels): ",
