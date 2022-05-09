@@ -20,6 +20,10 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
     actionButton(
       inputId = ns("download_popup"), 
       label = label
+    ),
+    tippy::tippy_this(
+      ns("download_popup"), 
+      "Click to download plot in preferred format and size."
     )
   )
 }
