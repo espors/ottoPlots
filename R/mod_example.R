@@ -72,16 +72,14 @@ mod_example_ui <- function(id){
             width = 6, 
             plotOutput(ns("hist_gg")), 
             mod_download_figure_ui(
-              ns("dl_hist_gg"), 
-              label = "Download ggplot"
+              ns("dl_hist_gg") 
             )
           ), 
           column(
             width = 6, 
             plotOutput(ns("hist_r")),
             mod_download_figure_ui(
-              ns("dl_hist_r"), 
-              label = "Download base R plot"
+              ns("dl_hist_r")
             )
           )
         ),
@@ -95,16 +93,14 @@ mod_example_ui <- function(id){
             width = 6, 
             plotOutput(ns("scatter_gg")), 
             mod_download_figure_ui(
-              ns("dl_scatter_gg"), 
-              label = "Download ggplot"
+              ns("dl_scatter_gg")
             )
           ), 
           column(
             width = 6, 
             plotOutput(ns("scatter_r")), 
             mod_download_figure_ui(
-              ns("dl_scatter_r"), 
-              label = "Download base R plot"
+              ns("dl_scatter_r")
             )
           )
         ), 
@@ -174,6 +170,7 @@ mod_example_server <- function(id){
         return(p)
       })
       output$hist_r <- renderPlot({
+        Sys.sleep(2)
         print(hist_r())
       })
       dl_hist_r <- mod_download_figure_server(

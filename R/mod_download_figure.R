@@ -8,24 +8,18 @@
 #' and base R plots. Base R plots must be saved in an object with recordPlot. 
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
-#' @param label Label for download button. Default is "Download Plot". 
+#'
 #' @return UI elements for download button. 
 #'
 #' @export
 #' 
+#' @seealso \code{\link{mod_download_figure_server}}
+#' 
 #' @importFrom shiny NS tagList 
-mod_download_figure_ui <- function(id, label = "Download Plot"){
+mod_download_figure_ui <- function(id){
   ns <- NS(id)
-  tagList(
-    actionButton(
-      inputId = ns("download_popup"), 
-      label = label
-    ),
-    tippy::tippy_this(
-      ns("download_popup"), 
-      "Click to download plot in preferred format and size."
-    )
-  )
+  
+  uiOutput(ns("download"))
 }
     
 #' download_figure Server Functions
@@ -45,6 +39,10 @@ mod_download_figure_ui <- function(id, label = "Download Plot"){
 #' Default is 8 in and must be a value between 2 and 30. 
 #' @param height Height (inches) the plot should be saved as. 
 #' Default is 6 in and must be a value between 2 and 30. 
+#' @param label Character string denoting the label for the download button. 
+#' Default is "Download plot"
+#' 
+#' @return {shiny} server function for download pop-up modal
 #'
 #' @export
 #' 
@@ -53,10 +51,25 @@ mod_download_figure_server <- function(
     filename, 
     figure, 
     width = 8, 
-    height = 6
+    height = 6, 
+    label = "Download Plot"
 ) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
+    
+    output$download <- renderUI({
+      req(figure())
+      tagList(
+        actionButton(
+          inputId = ns("download_popup"), 
+          label = label
+        ),
+        tippy::tippy_this(
+          ns("download_popup"), 
+          "Click to download plot in preferred format and size."
+        )
+      )
+    })
     
     
     min_size <- 2 # min for width or height
