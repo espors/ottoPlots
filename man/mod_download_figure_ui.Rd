@@ -4,12 +4,10 @@
 \alias{mod_download_figure_ui}
 \title{download_figure UI Function}
 \usage{
-mod_download_figure_ui(id, label = "Download Plot")
+mod_download_figure_ui(id)
 }
 \arguments{
 \item{id, input, output, session}{Internal parameters for {shiny}.}
-
-\item{label}{Label for download button. Default is "Download Plot".}
 }
 \value{
 UI elements for download button.
@@ -21,4 +19,7 @@ mod_download_figure_server() to automatically download figures from within a
 results in a pop-up where users can enter plot height and width and options 
 to download a plot as PDF, PNG, or SVG. This work for both {ggplot2} graphics 
 and base R plots. Base R plots must be saved in an object with recordPlot.
+}
+\seealso{
+\code{\link{mod_download_figure_server}}
 }

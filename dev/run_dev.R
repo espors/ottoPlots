@@ -1,5 +1,5 @@
 # Set options here
-{
+dev_run <- function(){
 options(golem.app.prod = FALSE) # TRUE = production mode, FALSE = development mode
 
 # Detach all loaded packages and clean your environment
