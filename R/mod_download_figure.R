@@ -62,6 +62,7 @@ mod_download_figure_server <- function(
       tagList(
         actionButton(
           inputId = ns("download_popup"), 
+          icon = icon("download"), 
           label = label
         ),
         tippy::tippy_this(
