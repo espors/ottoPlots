@@ -29,7 +29,7 @@ mod_download_figure_ui <- function(id, label = "Download Plot") {
   )
 }
 
-#' download_figure Server Functions
+#' download_figure Server Function
 #'
 #' @description The server function of the {shiny} module that works with
 #'  \code{\link{mod_download_figure_ui}()} to automatically download figures from
