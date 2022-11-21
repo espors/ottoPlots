@@ -4,7 +4,14 @@
 \alias{mod_download_figure_server}
 \title{download_figure Server Functions}
 \usage{
-mod_download_figure_server(id, filename, figure, width = 8, height = 6)
+mod_download_figure_server(
+  id,
+  filename,
+  figure,
+  width = 8,
+  height = 6,
+  label = "Download Plot"
+)
 }
 \arguments{
 \item{id, input, output, session}{Internal parameters for {shiny}.}
@@ -19,6 +26,12 @@ Default is 8 in and must be a value between 2 and 30.}
 
 \item{height}{Height (inches) the plot should be saved as. 
 Default is 6 in and must be a value between 2 and 30.}
+
+\item{label}{Character string denoting the label for the download button. 
+Default is "Download plot"}
+}
+\value{
+{shiny} server function for download pop-up modal
 }
 \description{
 The server function of the {shiny} module that works with 
