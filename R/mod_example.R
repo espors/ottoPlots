@@ -55,6 +55,7 @@ mod_example_ui <- function(id){
 #' example Server Functions
 #'
 #' @noRd 
+#' @importFrom graphics hist
 mod_example_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns

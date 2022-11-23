@@ -46,6 +46,8 @@ mod_download_figure_ui <- function(id){
 #'
 #' @export
 #' 
+#' @importFrom grDevices dev.off pdf png recordPlot svg
+#' 
 mod_download_figure_server <- function(
     id, 
     filename, 
