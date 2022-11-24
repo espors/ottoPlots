@@ -14,7 +14,7 @@ mod_download_figure_server(
 )
 }
 \arguments{
-\item{id, input, output, session}{Internal parameters for {shiny}.}
+\item{id}{String to identify namespace as an internal parameter for {shiny}.}
 
 \item{filename}{The name of file that plot should be saved as}
 
@@ -35,9 +35,9 @@ Default is "Download plot"}
 }
 \description{
 The server function of the {shiny} module that works with 
-mod_download_figure_ui() to automatically download figures from within a 
-{shiny} application. The server function handles the UI for the pop-up and 
-code for downloading the plot as PDF, PNG, or SVG.  This works for both 
-ggplot2 graphics and base R plots. Base R plots must be save in an object 
+\code{\link{mod_download_figure_ui}()} to automatically download figures from 
+within a {shiny} application. The server function handles the UI for the 
+pop-up and code for downloading the plot as PDF, PNG, or SVG.  This works for
+both ggplot2 graphics and base R plots. Base R plots must be save in an object 
 with recordPlot.
 }
