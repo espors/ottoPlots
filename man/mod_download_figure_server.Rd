@@ -18,26 +18,26 @@ mod_download_figure_server(
 
 \item{filename}{The name of file that plot should be saved as}
 
-\item{figure}{The plot to be downloaded. Should be wrapped in a reactive 
+\item{figure}{The plot to be downloaded. Should be wrapped in a reactive
 function}
 
-\item{width}{Width (inches) the plot should be saved as. 
+\item{width}{Width (inches) the plot should be saved as.
 Default is 8 in and must be a value between 2 and 30.}
 
-\item{height}{Height (inches) the plot should be saved as. 
+\item{height}{Height (inches) the plot should be saved as.
 Default is 6 in and must be a value between 2 and 30.}
 
-\item{label}{Character string denoting the label for the download button. 
+\item{label}{Character string denoting the label for the download button.
 Default is "Download plot"}
 }
 \value{
 {shiny} server function for download pop-up modal
 }
 \description{
-The server function of the {shiny} module that works with 
-\code{\link{mod_download_figure_ui}()} to automatically download figures from 
-within a {shiny} application. The server function handles the UI for the 
+The server function of the {shiny} module that works with
+\code{\link{mod_download_figure_ui}()} to automatically download figures from
+within a {shiny} application. The server function handles the UI for the
 pop-up and code for downloading the plot as PDF, PNG, or SVG.  This works for
-both ggplot2 graphics and base R plots. Base R plots must be save in an object 
+both ggplot2 graphics and base R plots. Base R plots must be save in an object
 with recordPlot.
 }
