@@ -1,7 +1,7 @@
 Package: ottoPlots
-Title: ottoPlots
+Title: Functions for handling plots in shiny 
 Version: 0.0.1.0000
-Authors@R: person('', 'Ge Labs', email = 'emma.spors@jacks.sdstate.edu', role = c('cre', 'aut'))
+Authors@R: person(Emma, Spors, email = 'emma.spors@jacks.sdstate.edu', role = c('cre', 'aut'))
 Description: Assortment of shiny modules to help automate 
   figures in shiny applications.
 License: MIT + file LICENSE
