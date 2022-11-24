@@ -60,6 +60,8 @@ mod_example_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
     
+    iris <- datasets::iris
+    
     ## update select input -----------------------------------------------------
     observe({
       updateSelectInput(
@@ -115,8 +117,3 @@ mod_example_server <- function(id){
   })
 }
     
-## To be copied in the UI
-# mod_example_ui("example_ui_1")
-    
-## To be copied in the server
-# mod_example_server("example_ui_1")
