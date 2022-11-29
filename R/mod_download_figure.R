@@ -30,8 +30,8 @@ mod_download_figure_ui <- function(id) {
 #' \code{\link{mod_download_figure_ui}()} to automatically download figures from
 #' within a {shiny} application. The server function handles the UI for the
 #' pop-up and code for downloading the plot as PDF, PNG, or SVG.  This works for
-#' both ggplot2 graphics and base R plots. Base R plots must be save in an object
-#' with recordPlot.
+#' both ggplot2 graphics and base R plots. Base R plots must be save in an 
+#' object with \code{\link{recordPlot}()}.
 #'
 #' @param id  String to identify namespace as an internal parameter for {shiny}.
 #' @param filename The name of file that plot should be saved as
