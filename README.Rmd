@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ottoPlots is a collection of shiny modules created to automate common 
-interactions with figures in shiny applications. The current functionalities 
+interactions with figures in shiny applications. The current functions
 include:
 
 - Module to download plots as PDF, PNG, and SVG files in a size specified by 
@@ -37,10 +37,4 @@ remotes::install_github("espors/ottoPlots")
 
 ## Example
 
-To see a working example of a shiny application with these modules
-
-```{r example}
-library(ottoPlots)
-#ottoPlots::run_app()
-```
-
+To see a working example of a shiny application with these modules use \code{ottoPlots::run_app()}

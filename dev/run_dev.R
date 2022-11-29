@@ -1,10 +1,9 @@
 # Set options here
-dev_run <- function(){
-options(golem.app.prod = FALSE) # TRUE = production mode, FALSE = development mode
+dev_run <- function() {
+options(golem.app.prod = FALSE)
 
 # Detach all loaded packages and clean your environment
 golem::detach_all_attached()
-# rm(list=ls(all.names = TRUE))
 
 # Document and reload your package
 golem::document_and_reload()
